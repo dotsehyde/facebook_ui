@@ -10,6 +10,7 @@ class Rooms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       height: 60.0,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),

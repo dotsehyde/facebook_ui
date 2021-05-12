@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_ui/config/palette.dart';
 import 'package:facebook_ui/models/models.dart';
+import 'package:facebook_ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Stories extends StatelessWidget {
@@ -12,7 +15,7 @@ class Stories extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       height: 200,
-      color: Colors.red,
+      color: Colors.white,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 1 + stories.length,
@@ -48,7 +51,58 @@ class _storyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.network(isAddStory ? currentUser.imageUrl : story.imageUrl)
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: CachedNetworkImage(
+            imageUrl: isAddStory ? currentUser.imageUrl : story.imageUrl,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: 110,
+          ),
+        ),
+        Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              gradient: Palette.storyGradient),
+          width: 110,
+        ),
+        Positioned(
+          top: 8,
+          left: 8,
+          child: isAddStory
+              ? Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: IconButton(
+                    onPressed: () => print('Add Story'),
+                    icon: Icon(
+                      Icons.add,
+                      color: Palette.facebookBlue,
+                    ),
+                    iconSize: 30,
+                  ))
+              : ProfileAvatar(
+                  imageUrl: story.user.imageUrl,
+                  hasBorder: !story.isViewed,
+                ),
+        ),
+        Positioned(
+          bottom: 8.0,
+          left: 8.0,
+          right: 8.0,
+          child: Text(
+            isAddStory ? "Add to Story" : story.user.name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        )
       ],
     );
   }
