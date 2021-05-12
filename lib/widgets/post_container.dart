@@ -9,66 +9,71 @@ class PostContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            ProfileAvatar(imageUrl: currentUser.imageUrl),
-            Flexible(
-                child: TextField(
-              decoration:
-                  InputDecoration.collapsed(hintText: "What's happening?"),
-            )),
-          ],
-        ),
-        const Divider(
-          height: 80,
-          thickness: 2,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextButton.icon(
-                onPressed: () => print("Video"),
-                icon: Icon(
-                  Icons.video_camera_back,
-                  color: Colors.red,
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              ProfileAvatar(imageUrl: currentUser.imageUrl),
+              const SizedBox(width: 8.0),
+              Flexible(
+                  child: TextField(
+                decoration:
+                    InputDecoration.collapsed(hintText: "What's happening?"),
+              )),
+            ],
+          ),
+          const Divider(
+            height: 10,
+            thickness: 0.5,
+          ),
+          Container(
+            height: 40,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton.icon(
+                    onPressed: () => print("Video"),
+                    icon: const Icon(
+                      Icons.videocam,
+                      color: Colors.red,
+                    ),
+                    label: Text(
+                      "Video",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+                const VerticalDivider(
+                  width: 8,
                 ),
-                label: Text(
-                  "Video",
-                  style: TextStyle(color: Colors.blue),
-                )),
-            const VerticalDivider(
-              width: 80,
-              thickness: 2,
+                TextButton.icon(
+                    onPressed: () => print("Photos"),
+                    icon: const Icon(
+                      Icons.photo_library,
+                      color: Colors.green,
+                    ),
+                    label: Text(
+                      "Photos",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+                const VerticalDivider(
+                  width: 8.0,
+                ),
+                TextButton.icon(
+                    onPressed: () => print("Room"),
+                    icon: const Icon(
+                      Icons.video_call,
+                      color: Colors.purple,
+                    ),
+                    label: Text(
+                      "Room",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+              ],
             ),
-            TextButton.icon(
-                onPressed: () => print("Photos"),
-                icon: Icon(
-                  Icons.photo_library,
-                  color: Colors.green,
-                ),
-                label: Text(
-                  "Photos",
-                  style: TextStyle(color: Colors.blue),
-                )),
-            const VerticalDivider(
-              width: 80,
-              thickness: 2,
-            ),
-            TextButton.icon(
-                onPressed: () => print("Room"),
-                icon: Icon(
-                  Icons.video_call,
-                  color: Colors.purple,
-                ),
-                label: Text(
-                  "Room",
-                  style: TextStyle(color: Colors.blue),
-                )),
-          ],
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

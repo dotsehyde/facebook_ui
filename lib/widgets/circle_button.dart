@@ -19,10 +19,11 @@ class CircleButton extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.grey[200],
       ),
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.all(6),
       child: IconButton(
         iconSize: iconSize,
         icon: Icon(icon),
+        color: Colors.black,
         onPressed: onPressed,
       ),
     );
