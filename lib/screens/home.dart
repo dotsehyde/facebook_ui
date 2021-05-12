@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () => print("Message"),
               ),
             ],
+            backgroundColor: Colors.white,
             floating: true,
             title: Text(
               'Facebook',
@@ -42,9 +43,18 @@ class _HomePageState extends State<HomePage> {
               child: PostContainer(
             currentUser: currentUser,
           )),
-          SliverToBoxAdapter(
-            child: Rooms(
-              onlineUsers: onlineUsers,
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 5, 0),
+            sliver: SliverToBoxAdapter(
+              child: Rooms(
+                onlineUsers: onlineUsers,
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 5, 0),
+            sliver: SliverToBoxAdapter(
+              child: Stories(currentUser: currentUser, stories: stories),
             ),
           ),
         ],
