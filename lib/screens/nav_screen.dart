@@ -31,15 +31,24 @@ class _NavScreenState extends State<NavScreen> {
     return DefaultTabController(
       length: _icons.length,
       child: Scaffold(
-        body: TabBarView(children: _screens),
-        bottomNavigationBar: CustomTabBar(
-            icons: _icons,
-            selectedIndex: _selectedIndex,
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            }),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _screens,
+        ),
+        bottomNavigationBar: !Responsive.isDesktop(context)
+            ? Container(
+                color: Colors.white,
+                padding: const EdgeInsets.only(bottom: 12),
+                child: CustomTabBar(
+                    icons: _icons,
+                    selectedIndex: _selectedIndex,
+                    onTap: (index) {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                    }),
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }
