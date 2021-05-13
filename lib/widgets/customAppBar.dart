@@ -2,6 +2,7 @@ import 'package:facebook_ui/config/palette.dart';
 import 'package:facebook_ui/models/user_model.dart';
 import 'package:facebook_ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CustomAppBar extends StatelessWidget {
   final User currentUser;
@@ -25,23 +26,58 @@ class CustomAppBar extends StatelessWidget {
         BoxShadow(color: Colors.black12, offset: Offset(0, 2), blurRadius: 4)
       ]),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "facebook",
-            style: TextStyle(
-              color: Palette.facebookBlue,
-              fontWeight: FontWeight.bold,
-              fontSize: 32,
+          Expanded(
+            child: Text(
+              "facebook",
+              style: TextStyle(
+                color: Palette.facebookBlue,
+                fontWeight: FontWeight.bold,
+                fontSize: 32,
+              ),
             ),
           ),
           Container(
+            height: double.infinity,
             width: 600,
             child: CustomTabBar(
+              isBottomIndicator: true,
               icons: icon,
               onTap: onTap,
               selectedIndex: selectedIndex,
             ),
-          )
+          ),
+          Expanded(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ProfileAvatar(imageUrl: currentUser.imageUrl),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      currentUser.name,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 12),
+              CircleButton(
+                icon: Icons.search,
+                iconSize: 30,
+                onPressed: () => print("Search"),
+              ),
+              CircleButton(
+                icon: MdiIcons.facebookMessenger,
+                iconSize: 30,
+                onPressed: () => print("Message"),
+              ),
+            ],
+          ))
         ],
       ),
     );
