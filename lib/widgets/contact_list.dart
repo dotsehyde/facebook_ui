@@ -27,6 +27,10 @@ class ContactList extends StatelessWidget {
               Icon(
                 Icons.search,
                 color: Colors.grey[600],
+              ),
+              Icon(
+                Icons.more_horiz,
+                color: Colors.grey[600],
               )
             ],
           ),
@@ -44,9 +48,12 @@ class ContactList extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
-                        Text(
-                          user.name,
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                        Flexible(
+                          child: Text(
+                            user.name,
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         )
                       ],
                     ),
