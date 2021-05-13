@@ -3,6 +3,7 @@ import 'package:facebook_ui/config/palette.dart';
 import 'package:facebook_ui/models/models.dart';
 import 'package:facebook_ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PostList extends StatelessWidget {
   final Post post;
@@ -27,7 +28,9 @@ class PostList extends StatelessWidget {
                 ),
                 Text(post.caption),
                 post.imageUrl == null
-                    ? const SizedBox.shrink()
+                    ? const SizedBox(
+                        height: 6,
+                      )
                     : const SizedBox(
                         height: 6,
                       )
@@ -147,7 +150,21 @@ class _PostStats extends StatelessWidget {
         const Divider(),
         Row(
           children: [
-            _PostButton(),
+            _PostButton(
+                icon: Icon(MdiIcons.thumbUpOutline,
+                    color: Colors.grey[600], size: 20),
+                label: "Like",
+                onTap: () => print("like")),
+            _PostButton(
+                icon: Icon(MdiIcons.commentOutline,
+                    color: Colors.grey[600], size: 20),
+                label: "Comment",
+                onTap: () => print("Comment")),
+            _PostButton(
+                icon: Icon(MdiIcons.shareOutline,
+                    color: Colors.grey[600], size: 25),
+                label: "Share",
+                onTap: () => print("Share")),
           ],
         )
       ],
@@ -156,8 +173,35 @@ class _PostStats extends StatelessWidget {
 }
 
 class _PostButton extends StatelessWidget {
+  final Icon icon;
+  final String label;
+  final Function onTap;
+
+  const _PostButton({Key key, this.icon, this.label, this.onTap})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Expanded(
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            height: 25,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon,
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(label)
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

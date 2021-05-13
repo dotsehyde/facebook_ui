@@ -72,8 +72,7 @@ class _storyCard extends StatelessWidget {
           left: 8,
           child: isAddStory
               ? Container(
-                  height: 30,
-                  width: 30,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -84,7 +83,6 @@ class _storyCard extends StatelessWidget {
                       Icons.add,
                       color: Palette.facebookBlue,
                     ),
-                    iconSize: 30,
                   ))
               : ProfileAvatar(
                   imageUrl: story.user.imageUrl,

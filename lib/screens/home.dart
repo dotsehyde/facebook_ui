@@ -60,10 +60,12 @@ class _HomePageState extends State<HomePage> {
               child: Stories(currentUser: currentUser, stories: stories),
             ),
           ),
-          SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-            final Post post = posts[index];
-            return PostList(post: post);
-          }))
+          SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              final Post post = posts[index];
+              return PostList(post: post);
+            }, childCount: posts.length),
+          )
         ],
       ),
     );

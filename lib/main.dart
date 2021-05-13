@@ -1,3 +1,5 @@
+import 'package:facebook_ui/screens/nav_screen.dart';
+
 import '/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: NavScreen(),
     );
   }
 }
