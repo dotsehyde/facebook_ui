@@ -109,8 +109,12 @@ class _HomePageDesktop extends StatelessWidget {
       children: [
         Flexible(
           flex: 2,
-          child: Container(
-            color: Colors.orange,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: MenuList(currentUser: currentUser),
+            ),
           ),
         ),
         Spacer(),
@@ -149,9 +153,12 @@ class _HomePageDesktop extends StatelessWidget {
         Spacer(),
         Flexible(
             flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: ContactList(users: onlineUsers),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: ContactList(users: onlineUsers),
+              ),
             )),
       ],
     );
