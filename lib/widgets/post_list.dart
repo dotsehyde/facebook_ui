@@ -11,43 +11,50 @@ class PostList extends StatelessWidget {
   const PostList({Key key, this.post}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      color: Colors.white,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _PostHeader(post: post),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(post.caption),
-                post.imageUrl == null
-                    ? const SizedBox(
-                        height: 6,
-                      )
-                    : const SizedBox(
-                        height: 6,
-                      )
-              ],
+    final bool isDesktop = Responsive.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: isDesktop ? 5 : 0),
+      elevation: isDesktop ? 1 : 0,
+      shape: isDesktop
+          ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+          : null,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        color: Colors.white,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _PostHeader(post: post),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(post.caption),
+                  post.imageUrl == null
+                      ? const SizedBox(
+                          height: 6,
+                        )
+                      : const SizedBox(
+                          height: 6,
+                        )
+                ],
+              ),
             ),
-          ),
-          post.imageUrl == null
-              ? const SizedBox.shrink()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: CachedNetworkImage(imageUrl: post.imageUrl),
-                ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: _PostStats(post: post),
-          )
-        ],
+            post.imageUrl == null
+                ? const SizedBox.shrink()
+                : Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: CachedNetworkImage(imageUrl: post.imageUrl),
+                  ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: _PostStats(post: post),
+            )
+          ],
+        ),
       ),
     );
   }

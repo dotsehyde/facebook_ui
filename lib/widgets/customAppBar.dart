@@ -56,6 +56,7 @@ class CustomAppBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ProfileAvatar(imageUrl: currentUser.imageUrl),
+                  const SizedBox(width: 8),
                   Container(
                     alignment: Alignment.center,
                     child: Text(

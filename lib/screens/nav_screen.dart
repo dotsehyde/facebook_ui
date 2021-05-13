@@ -33,7 +33,7 @@ class _NavScreenState extends State<NavScreen> {
     return DefaultTabController(
       length: _icons.length,
       child: Scaffold(
-        appBar: !Responsive.isDesktop(context)
+        appBar: Responsive.isDesktop(context)
             ? PreferredSize(
                 preferredSize: Size(screenSize.width, 100),
                 child: CustomAppBar(
