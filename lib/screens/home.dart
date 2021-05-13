@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             floating: false,
             title: Text(
-              'Facebook',
+              'facebook',
               style: TextStyle(
                 color: Palette.facebookBlue,
                 fontWeight: FontWeight.bold,
